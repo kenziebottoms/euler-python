@@ -17,7 +17,7 @@ def find_number_of_divisors(x):
       divisors.append(i)
   return len(divisors)
 
-x = 10000
+x = 12350
 while find_number_of_divisors(triangle_number(x)) <= 500:
   x += 1
   print triangle_number(x)
