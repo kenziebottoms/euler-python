@@ -17,8 +17,8 @@ def is_prime(x):
   primes.append(x)
   return True
 
-for i in range(2,2000000):
-  if is_prime(i):
+for i in range(3,2000000,2):
+  if is_prime(i) & (str(i)[-2:] == "17"):
     print i
 
-print sum(primes)
+print sum(primes+2)
