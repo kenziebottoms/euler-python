@@ -1,30 +1,33 @@
 # project euler no. 19
 #   find how many Sundays fell on the first of the month from 1 Jan 1901 to 31 Dec 2000?
 #     answer = 171
+days_in_month = {1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+
+def is_leap(year):
+  if year % 400 == 0:
+    return True
+  return year % 4 == 0 and year % 100 != 0
 
 def find_weekday(year,month,day):
-  month -= 1
-  days_in_month = {0:31,1:28,2:31,3:30,4:31,5:30,6:31,7:31,8:30,9:31,10:30,11:31}
-  current_month = 0
-  current_weekday = 1 + day
-  for i_year in range(1901,year):
-    if i_year % 4 == 0:
-      current_weekday += 366
-    else:
-      current_weekday += 365
-  for i_month in range(month):
-    current_weekday += days_in_month[i_month]
-    if year % 4 == 0 and i_month == 1:
-        current_weekday += 1
-  return (current_weekday % 7)
+  year_delt = year-1900
+  days = day + 365*year_delt
+  for i in range(1900,year,4):
+    if is_leap(i):
+      days += 1
+  for i in range(1,month):
+    days += days_in_month[i]
+    if is_leap(year) and i == 2:
+      days += 1
+  return (days % 7)
 
-def count_sundays(lower_bound,upper_bound,day_of_week):
+def count_sundays(start_year,end_year):
   count = 0
-  for year in range(lower_bound,upper_bound):
-    for month in range(12):
+  for year in range(start_year,end_year+1):
+    for month in range(1,13):
       if find_weekday(year,month,1) == 0:
         count += 1
-        print month,year
+        print '*',
+      print year, month
   return count
 
-print count_sundays(1901,2001,0)
+print count_sundays(1901,2000)
