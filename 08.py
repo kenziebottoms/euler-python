@@ -36,7 +36,7 @@ def product(list):
 
 def get_strings(magic_number,strings):
   for i in range(len(magic_number)-4):
-    if not ('0' in magic_number[i:i+5]):
+    if magic_number[i] != '0':
       strings.append(magic_number[i:i+5])
   return strings
 
