@@ -10,14 +10,17 @@ def triangle_number(term):
   term = (term*(term+1))/2
   return term
 
-def find_number_of_divisors(x):
+def divisors(x):
   divisors = [1,x]
-  for i in range(2,x/2+1):
+  i = 2;
+  while x >= i and i < math.sqrt(x):
     if x % i == 0:
       divisors.append(i)
-  return len(divisors)
+      divisors.append(x/i)
+    i += 1
+  return divisors
 
 x = 12350
-while find_number_of_divisors(triangle_number(x)) <= 500:
+while len(divisors(triangle_number(x))) <= 500:
   x += 1
   print triangle_number(x)
