@@ -4,7 +4,7 @@
 
 import urllib
 
-names = urllib.urlopen('http://projecteuler.net/project/names.txt','r').read()
+names = urllib.urlopen('https://projecteuler.net/project/resources/p022_names.txt','r').read()
 names = names.strip('\"').split('\",\"')
 names.sort()
 
